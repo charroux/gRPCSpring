@@ -13,16 +13,12 @@ public class MyServiceImpl extends MyServiceGrpc.MyServiceImplBase {
 
     Logger logger = LoggerFactory.getLogger(MyServiceImpl.class);
 
-    public MyServiceImpl() {
-        System.out.println("-------------ooooooookkkkkkkk---------");
-    }
-
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
         logger.info("sayHello => " + request);
         responseObserver.onNext(HelloReply.newBuilder()
-                .setMessage("Hello ==> " + request.getName())
+                .setMessage("Hello " + request.getName())
                 .build());
-        responseObserver.onCompleted();;
+        responseObserver.onCompleted();
     }
 }
