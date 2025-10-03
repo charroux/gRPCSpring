@@ -1,5 +1,7 @@
 package com.example.myServiceClient.web;
 
+import com.example.lib.HelloReply;
+import com.example.lib.HelloRequest;
 import com.example.myServiceClient.service.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +20,16 @@ public class WebService {
         this.myService = myService;
     }
 
-    @GetMapping("/{to}")
+    /*@GetMapping("/{to}")
     @ResponseStatus(HttpStatus.OK)
-    public String sayHello(@PathVariable("to") String to){
-        return myService.sayHello(to);
+    public void sayHello(@PathVariable("to") String to){
+        myService.sayHello(to);
+    }*/
+
+    @GetMapping("/{plateNumber}")
+    @ResponseStatus(HttpStatus.OK)
+    public void addCar(@PathVariable("plateNumber") String plateNumber){
+        myService.addCar(plateNumber);
     }
 
 }

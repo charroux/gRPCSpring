@@ -24,6 +24,16 @@ public final class HelloWorldProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_example_HelloReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_example_Car_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_example_Car_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_example_Invoice_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_example_Invoice_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,10 +45,13 @@ public final class HelloWorldProto {
     java.lang.String[] descriptorData = {
       "\n\017myService.proto\022\013com.example\"\034\n\014HelloR" +
       "equest\022\014\n\004name\030\001 \001(\t\"\035\n\nHelloReply\022\017\n\007me" +
-      "ssage\030\001 \001(\t2M\n\tMyService\022@\n\010SayHello\022\031.c" +
-      "om.example.HelloRequest\032\027.com.example.He" +
-      "lloReply\"\000B$\n\017com.example.libB\017HelloWorl" +
-      "dProtoP\001b\006proto3"
+      "ssage\030\001 \001(\t\"\032\n\003Car\022\023\n\013plateNumber\030\001 \001(\t\"" +
+      "\031\n\007Invoice\022\016\n\006amount\030\001 \001(\r2\203\001\n\tMyService" +
+      "\022@\n\010SayHello\022\031.com.example.HelloRequest\032" +
+      "\027.com.example.HelloReply\"\000\0224\n\004Rent\022\020.com" +
+      ".example.Car\032\024.com.example.Invoice\"\000(\0010\001" +
+      "B$\n\017com.example.libB\017HelloWorldProtoP\001b\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -56,6 +69,18 @@ public final class HelloWorldProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_example_HelloReply_descriptor,
         new java.lang.String[] { "Message", });
+    internal_static_com_example_Car_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_com_example_Car_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_example_Car_descriptor,
+        new java.lang.String[] { "PlateNumber", });
+    internal_static_com_example_Invoice_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_com_example_Invoice_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_example_Invoice_descriptor,
+        new java.lang.String[] { "Amount", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

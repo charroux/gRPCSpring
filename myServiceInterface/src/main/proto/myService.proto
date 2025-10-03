@@ -11,6 +11,9 @@ service MyService {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {
   }
+
+  rpc Rent(stream Car) returns (stream Invoice) {
+  }
 }
 
 // The request message containing the user's name.
@@ -22,3 +25,12 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
 }
+
+message Car {
+  string plateNumber = 1;
+}
+
+message Invoice {
+  uint32 amount = 1;
+}
+

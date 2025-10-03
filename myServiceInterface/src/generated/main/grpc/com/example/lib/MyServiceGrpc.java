@@ -49,6 +49,37 @@ public final class MyServiceGrpc {
     return getSayHelloMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.example.lib.Car,
+      com.example.lib.Invoice> getRentMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Rent",
+      requestType = com.example.lib.Car.class,
+      responseType = com.example.lib.Invoice.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<com.example.lib.Car,
+      com.example.lib.Invoice> getRentMethod() {
+    io.grpc.MethodDescriptor<com.example.lib.Car, com.example.lib.Invoice> getRentMethod;
+    if ((getRentMethod = MyServiceGrpc.getRentMethod) == null) {
+      synchronized (MyServiceGrpc.class) {
+        if ((getRentMethod = MyServiceGrpc.getRentMethod) == null) {
+          MyServiceGrpc.getRentMethod = getRentMethod =
+              io.grpc.MethodDescriptor.<com.example.lib.Car, com.example.lib.Invoice>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Rent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.example.lib.Car.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.example.lib.Invoice.getDefaultInstance()))
+              .setSchemaDescriptor(new MyServiceMethodDescriptorSupplier("Rent"))
+              .build();
+        }
+      }
+    }
+    return getRentMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -109,6 +140,13 @@ public final class MyServiceGrpc {
         io.grpc.stub.StreamObserver<com.example.lib.HelloReply> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSayHelloMethod(), responseObserver);
     }
+
+    /**
+     */
+    default io.grpc.stub.StreamObserver<com.example.lib.Car> rent(
+        io.grpc.stub.StreamObserver<com.example.lib.Invoice> responseObserver) {
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getRentMethod(), responseObserver);
+    }
   }
 
   /**
@@ -153,6 +191,14 @@ public final class MyServiceGrpc {
         io.grpc.stub.StreamObserver<com.example.lib.HelloReply> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSayHelloMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public io.grpc.stub.StreamObserver<com.example.lib.Car> rent(
+        io.grpc.stub.StreamObserver<com.example.lib.Invoice> responseObserver) {
+      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
+          getChannel().newCall(getRentMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -218,6 +264,7 @@ public final class MyServiceGrpc {
   }
 
   private static final int METHODID_SAY_HELLO = 0;
+  private static final int METHODID_RENT = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -250,6 +297,9 @@ public final class MyServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_RENT:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.rent(
+              (io.grpc.stub.StreamObserver<com.example.lib.Invoice>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -265,6 +315,13 @@ public final class MyServiceGrpc {
               com.example.lib.HelloRequest,
               com.example.lib.HelloReply>(
                 service, METHODID_SAY_HELLO)))
+        .addMethod(
+          getRentMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              com.example.lib.Car,
+              com.example.lib.Invoice>(
+                service, METHODID_RENT)))
         .build();
   }
 
@@ -314,6 +371,7 @@ public final class MyServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new MyServiceFileDescriptorSupplier())
               .addMethod(getSayHelloMethod())
+              .addMethod(getRentMethod())
               .build();
         }
       }

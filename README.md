@@ -22,13 +22,6 @@ build.gradle file: https://github.com/charroux/gRPCSpring/blob/main/myServiceInt
 
 ## The servder implementation
 
-The implementation: https://github.com/charroux/gRPCSpring/blob/main/myServiceServer/src/main/java/com/example/myServiceServer/MyServiceImpl.java
-
-Notice the annotation:
-```
-@GrpcService
-```
-
 Project settings: https://github.com/charroux/gRPCSpring/blob/main/myServiceServer/settings.gradle
 
 build.gradle file: https://github.com/charroux/gRPCSpring/blob/main/myServiceServer/build.gradle
@@ -38,6 +31,18 @@ See how the interface definition project is included:
 implementation project(':myServiceInterface')
 ```
 Server port selection: https://github.com/charroux/gRPCSpring/blob/main/myServiceServer/src/main/resources/application.properties
+
+The server implementation: https://github.com/charroux/gRPCSpring/blob/main/myServiceServer/src/main/java/com/example/myServiceServer/MyServiceImpl.java
+
+Notice the annotation:
+```
+@GrpcService
+```
+Look for 
+```
+new StreamObserver<Car>
+```
+onNext is called each time a car is received.
 
 ## The client side
 
